@@ -1,0 +1,35 @@
+<h2>Add new match bet!</h2>
+
+<form (ngSubmit)="onSubmit()" class="add-match-form">
+
+  <div class="form-half">
+    <label>Home Team:</label>
+    <input type="text" class="form-control" formControlName="homeTeam" required>
+
+    <label>Home Goals:</label>
+    <input type="text" class="form-control" formControlName="homeGoals" value="null" disabled="disabled">
+  </div>
+
+  <div class="form-half">
+    <label>Away Team:</label>
+    <input type="text" class="form-control" formControlName="awayTeam" required>
+
+    <label>Away Goals:</label>
+    <input type="text" class="form-control" formControlName="awayGoals" value="null" disabled="disabled">
+  </div>
+
+  <div class="cf"></div>
+
+  <div class="form-full">
+    <label>Match Status:</label>
+    <input type="text" class="form-control" formControlName="matchStatus" value="notStarted" disabled="disabled">
+
+    <label>Winner:</label>
+    <input type="text" class="form-control" formControlName="winner" value="null" disabled="disabled">
+
+    <label>Match date:</label>
+    <input type="date" class="form-control" formControlName="date" required>
+  </div>
+
+  <button type="submit" class="btn-primary" >Submit</button>
+</form>

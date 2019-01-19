@@ -24,12 +24,12 @@ body {
   position: relative;
   background: rgba(255, 255, 255, 0.9);
   width: 90%;
-  max-width: 980px;
+  max-width: 1060px;
   padding: 50px;
   border-radius: 10px;
-  height: 80vh;
+  height: 90vh;
   margin: auto;
-  margin-top: 10vh;
+  margin-top: 5vh;
   color: #121212;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -49,22 +49,21 @@ body {
     color: #2979FF;
     font-weight: 100;
     margin-bottom: 30px;
-    padding-bottom: 20px;
   }
 }
 
 .back {
   cursor: pointer;
-  background: #90CAF9;
+  background: #42A5F5;
   color: #fff;
   font-size: 1.3em;
   font-weight: 700;
-  padding: 20px;
+  padding: 30px;
   border-bottom: 2px solid #64B5F6;
   margin: -50px -50px 30px -50px;
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   &:hover {
-    background: #42A5F5;
+    background: #2f90de;
     border-bottom: 2px solid #2196F3;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   }
@@ -72,7 +71,7 @@ body {
 
 #rofl {
   position: absolute;
-  bottom: 50px;
+  bottom: 30px;
   width: 100%;
   left: 0;
   text-align: center;
@@ -85,14 +84,21 @@ body {
   background: #fff;
   color: #2979FF;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: center;
-  padding: 30px;
+  padding: 40px;
   font-size: 2em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   &:hover {
     background: #2979FF;
     color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.48);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   }
+}
+
+.cf {
+  width: 100%;
+  clear: both;
 }

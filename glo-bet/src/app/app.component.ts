@@ -15,19 +15,16 @@ export class AppComponent implements OnInit {
   addMatchFunction() {
     this.welcomePage = false;
     this.addMatch = !this.addMatch;
-    console.log('Switched!');
   };
 
   addResultFunction() {
     this.welcomePage = false;
     this.matchResult = !this.matchResult;
-    console.log('Switched!');
   };
 
   matchesHistoryFunction() {
     this.welcomePage = false;
     this.matchesHistory = !this.matchesHistory;
-    console.log('Switched!');
   };
 
   backFunction() {
