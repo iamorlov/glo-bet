@@ -1,6 +1,6 @@
 <h2>Upcoming matches:</h2>
 
-<div *ngFor='let match of data' class="single-match">
+<div *ngFor='let match of data' class="single-match" (click)="singleMatchOpen(match.id)">
   <div class='single-match-id'><strong>ID: </strong>{{match.id}} <i class="far fa-edit" style="float: right;"></i></div>
   <div class='single-match-col text-right'>{{match.homeTeam}}</div>
   <div class='single-match-devider'> - </div>
@@ -8,4 +8,19 @@
   <div class='single-match-date'><i class="far fa-clock"></i> {{match.date | date:'dd/MM/yy - HH:mm'}}</div>
 </div>
 
-<a routerLink="/single_match" routerLinkActive="active">gg</a>
+
+<div [hidden]="!matchId">
+  <h2>Edit match</h2>
+
+  <div class='edit-match' *ngFor='let match of single_data_array'>
+    <input type='text' value='{{match.homeTeam}}' class="input-data">
+    <input type='text' value='{{match.awayTeam}}' class="input-data">
+    <input type='number' value='{{match.homeGoals}}' placeholder="Home Team Goals" class="input-data">
+    <input type='number' value='{{match.awayGoals}}' placeholder="Away Team Goals" class="input-data">
+    <input type='text' value='{{match.matchStatus}}' class="input-data">
+    <input type='text' value='{{match.date}}' class="input-data">
+    <input type='text' value='{{match.winner}}' placeholder="Winner!" class="input-data">
+
+    <div class="cf"></div>
+  </div>
+</div>
