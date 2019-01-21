@@ -1,47 +1,14 @@
 <div class="admin-wrapper">
 
-  <div *ngIf="welcomePage">
+  <div>
     <h1>Welcome to Global Betting admin!</h1>
 
-    <div class="matches-button" (click)="addMatchFunction()">
-      <i class="fas fa-futbol"></i> Add new match!
+    <app-matches></app-matches>
+
+    <div id='rofl'>
+      <strong>2K19</strong><br/>
+      All rights not reserver &#169;
     </div>
-
-    <div class="matches-button" (click)="addResultFunction()">
-      <i class="fas fa-trophy"></i> Add match result!
-    </div>
-
-    <div class="matches-button" (click)="matchesHistoryFunction()">
-      <i class="fas fa-history"></i> History
-    </div>
-  </div>
-
-  <div *ngIf="addMatch">
-    <div class="back" (click)='backFunction()'>
-      <i class="fas fa-chevron-left"></i> Back
-    </div>
-      <app-add-match></app-add-match>
-  </div>
-
-  <div *ngIf="matchResult">
-    <div class="back" (click)='backFunction()'>
-      <i class="fas fa-chevron-left"></i> Back
-    </div>
-    <h2>Add match result!</h2>
-
-  </div>
-
-  <div *ngIf="matchesHistory">
-    <div class="back" (click)='backFunction()'>
-      <i class="fas fa-chevron-left"></i> Back
-    </div>
-    <h2>Matches history!</h2>
-
-  </div>
-
-  <div id='rofl'>
-    <strong>2K19</strong><br/>
-    All rights not reserver &#169;
   </div>
 
 </div>

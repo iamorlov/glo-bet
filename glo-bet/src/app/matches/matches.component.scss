@@ -1,0 +1,39 @@
+.single-match {
+  width: 46%;
+  float: left;
+  margin: 2%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #42A5F5;
+  padding: 10px;
+  background: #fff;
+}
+.text-right {
+  text-align: right;
+}
+.single-match-id {
+  cursor: pointer;
+  background: #42A5F5;
+  color: #fff;
+  margin: -10px -10px 10px -10px;
+  padding: 10px;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover {
+      background: #128ef3;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+}
+.single-match-col {
+  float: left;
+  width: 46%;
+  font-size: 1.4em;
+}
+.single-match-devider {
+  width: 8%;
+  float: left;
+  text-align: center;
+  font-size: 1.4em;
+}
+.single-match-date {
+  text-align: center;
+}
