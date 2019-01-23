@@ -38,7 +38,6 @@
 
       <label class='input-data-label'>Who is a winner?</label>
       <select class="input-data" name='winner' ngModel required>
-        <option value='null' selected>Select winner!</option>
         <option value='{{match.homeTeam}}'>{{match.homeTeam}}</option>
         <option value='{{match.awayTeam}}'>{{match.awayTeam}}</option>
         <option value='Draw'>Draw</option>
@@ -52,4 +51,18 @@
       <button class="save-button" type='submit' [disabled]="!f.valid">Save</button>
     </form>
   </div>
+</div>
+
+<div class="admin-wrapper">
+  <form #post="ngForm" (ngSubmit)="postSubmit(post.value)">
+    <input type='text' placeholder="Home Team" class="input-data" name='homeTeam' ngModel required>
+    <input type='text' placeholder="Away Team" class="input-data" name='awayTeam' ngModel required>
+    <input type='text' value='null' placeholder="Home Team Goals" class="input-data" name='homeGoals' ngModel disabled>
+    <input type='text' value='null' placeholder="Away Team Goals" class="input-data" name='awayGoals' ngModel disabled>
+    <input type='text' value='NotStarted' placeholder="Match status" class="input-data" name='matchStatus' ngModel disabled>
+    <input type='text' value='2019-02-14T10:10:40.787Z' placeholder="Match date" class="input-data" name='date' ngModel required>
+    <input type='text' value='null' placeholder="Winner" class="input-data" name='winner' ngModel disabled>
+
+    <button class="save-button" type='submit' [disabled]="!post.valid">Add match</button>
+  </form>
 </div>

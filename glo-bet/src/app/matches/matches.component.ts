@@ -14,7 +14,7 @@ export class MatchesComponent implements OnInit {
   private getMatchesURL = 'https://global-bet.azurewebsites.net/api/matches?offset=0&limit=100';
   data: any = {};
 
-  private getSingleMatchURL = 'https://global-bet.azurewebsites.net/api/matches/';
+  private generalMatchURL = 'https://global-bet.azurewebsites.net/api/matches/';
   matchId: any;
   single_data: any = {};
   single_data_array = [];
@@ -50,7 +50,7 @@ export class MatchesComponent implements OnInit {
   }
 
   getSingleMatch() {
-    let getSingleMatchDataURL = this.getSingleMatchURL + this.matchId;
+    let getSingleMatchDataURL = this.generalMatchURL + this.matchId;
     return this.http.get(getSingleMatchDataURL)
       .map((res: Response) => res.json());
   }
@@ -77,10 +77,34 @@ export class MatchesComponent implements OnInit {
 
     console.log(updatedMatch);
 
-    let putSingleMatchDataURL = this.getSingleMatchURL + value.id;
+    let putSingleMatchDataURL = this.generalMatchURL + value.id;
     return this.http
       .put(putSingleMatchDataURL, updatedMatch)
-      .subscribe();
+      .subscribe((res: Response) => res.json());
+  }
+
+  postSubmit(value: any) {
+
+    let addMatch = {
+      '_id': (function () {
+                  var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+                  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+                      return (Math.random() * 16 | 0).toString(16);
+                  }).toLowerCase();
+              })(),
+      'homeTeam': value.homeTeam,
+      'homeGoals': null,
+      'awayTeam': value.awayTeam,
+      'awayGoals': null,
+      'matchStatus': 'NotStarted',
+      'winner': null,
+      'date': value.date
+    };
+
+    console.log(addMatch);
+    return this.http
+      .post(this.generalMatchURL, addMatch)
+      .subscribe((res: Response) => res.json());
   }
 
   ngOnInit() {
