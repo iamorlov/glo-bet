@@ -1,14 +1,36 @@
-<nav class="nav">
-  <div class="nav-wrapper">
-    <div class="nav-left">
-      Global Betting admin!
-    </div>
-    <div class="nav-right">
-      <span class="nav-button"> 
-        <i class="fas fa-plus"></i> Add new match
-      </span>
-    </div>
-  </div>
-</nav>
+<div id="login" *ngIf='!logged'>
+  <form #login="ngForm" (ngSubmit)="onLogin(login.value)">
+    <div class="ligin-title">Welcome to Global Betting admin!</div>
 
-<app-matches></app-matches>
+    <div class='login-error' *ngIf='error'>
+      <i class="fas fa-exclamation-triangle"></i> Are you sure, that you can be here, little bastard!
+    </div>
+
+    <label><i class="far fa-user"></i> Login</label>
+    <input class="login-input" type='text' placeholder="enter login" value='username' name='username' ngModel required>
+    <label><i class="fas fa-key"></i> Password</label>
+    <input class="login-input" type='password' placeholder="enter password" value='password' name='password' ngModel required>
+
+    <button class="login-button" type='submit' [disabled]="!login.valid">Login &nbsp;&nbsp;<i class="fas fa-sign-in-alt"></i></button>
+  </form>
+</div>
+
+<div *ngIf='logged'>
+  <nav class="nav">
+    <div class="nav-wrapper">
+      <div class="nav-left">
+        Global Betting admin!
+      </div>
+      <div class="nav-right">
+        <span class="nav-button">
+          <i class="fas fa-plus"></i> Add new match
+        </span>
+        <span class="nav-button-logout" (click)='logOut()'>
+          Log out &nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <app-matches></app-matches>
+</div>

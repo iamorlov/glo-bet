@@ -3,35 +3,43 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
-  welcomePage = true;
-  addMatch = false;
-  matchResult = false;
-  matchesHistory = false;
+  logged = false;
+  error = false;
 
-  addMatchFunction() {
-    this.welcomePage = false;
-    this.addMatch = !this.addMatch;
+  /* MEGA SHIT CODE! NEVER CODE LIKE THIS!!! */
+  username:string = 'Odmen';
+  password:string = 'Pituh';
+
+  constructor() {
+    this.checkLogged();
+  }
+
+  login() {
+    this.logged = !this.logged;
+  }
+
+  onLogin(value: any) {
+    if(value.username === this.username && value.password === this.password) {
+      this.logged = !this.logged;
+      localStorage.setItem('logged', 'true');
+    } else {
+      this.error = !this.error;
+    }
   };
 
-  addResultFunction() {
-    this.welcomePage = false;
-    this.matchResult = !this.matchResult;
-  };
+  checkLogged() {
+    if (localStorage.getItem('logged') === 'true') {
+      this.logged = !this.logged;
+    }
+  }
 
-  matchesHistoryFunction() {
-    this.welcomePage = false;
-    this.matchesHistory = !this.matchesHistory;
-  };
-
-  backFunction() {
-    this.welcomePage = true;
-    this.addMatch = false;
-    this.matchResult = false;
-    this.matchesHistory = false;
+  logOut() {
+    localStorage.clear();
+    document.location.reload(true);
   }
 
   ngOnInit() { };
