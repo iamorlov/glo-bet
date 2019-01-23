@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://global-bet.azurewebsites.net",
+    "secure": false
+  }
+}

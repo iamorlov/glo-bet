@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from  '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MatchesComponent } from './matches/matches.component';
-import { SingleMatchComponent } from './single-match/single-match.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatchesComponent,
-    SingleMatchComponent
+    MatchesComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

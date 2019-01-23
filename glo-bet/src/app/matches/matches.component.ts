@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response } from  '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -13,16 +15,13 @@ export class MatchesComponent implements OnInit {
   data: any = {};
 
   private getSingleMatchURL = 'https://global-bet.azurewebsites.net/api/matches/';
-  matchId = false;
-  single_data_array = []; // FUCKING FIX!
+  matchId: any;
   single_data: any = {};
+  single_data_array = [];
 
   constructor( private http: Http ) {
     this.getMatchesData();
     this.getMatches();
-
-    this.getSingleMatchData();
-    this.getSingleMatch();
   }
 
   getMatches() {
@@ -32,14 +31,12 @@ export class MatchesComponent implements OnInit {
 
   getMatchesData() {
     this.getMatches().subscribe(data => {
-      console.log(data);
       this.data = data;
     })
   }
 
   singleMatchOpen(id) {
     this.matchId = id;
-    console.log(this.matchId);
     this.getSingleMatchData();
     this.getSingleMatch();
   }
@@ -47,7 +44,7 @@ export class MatchesComponent implements OnInit {
   getSingleMatch() {
     let getSingleMatchDataURL = this.getSingleMatchURL + this.matchId;
     return this.http.get(getSingleMatchDataURL)
-    .map((res: Response) => res.json());
+      .map((res: Response) => res.json());
   }
 
   getSingleMatchData() {
@@ -56,6 +53,26 @@ export class MatchesComponent implements OnInit {
       this.single_data = data;
       this.single_data_array.push(data);
     })
+  }
+
+  onSubmit(value: any) {
+    let updatedMatch = {
+      'id': value.id,
+      'homeTeam': value.homeTeam,
+      'homeGoals': value.homeGoals,
+      'awayTeam': value.awayTeam,
+      'awayGoals': value.awayGoals,
+      'matchStatus': value.matchStatus,
+      'winner': value.winner,
+      'date': value.date
+    };
+
+    console.log(updatedMatch);
+
+    let putSingleMatchDataURL = this.getSingleMatchURL + value.id;
+    return this.http
+      .put(putSingleMatchDataURL, updatedMatch)
+      .subscribe();
   }
 
   ngOnInit() {
