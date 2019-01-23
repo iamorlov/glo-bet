@@ -19,6 +19,8 @@ export class MatchesComponent implements OnInit {
   single_data: any = {};
   single_data_array = [];
 
+  edit_matches = [];
+
   constructor( private http: Http ) {
     this.getMatchesData();
     this.getMatches();
@@ -37,8 +39,14 @@ export class MatchesComponent implements OnInit {
 
   singleMatchOpen(id) {
     this.matchId = id;
-    this.getSingleMatchData();
-    this.getSingleMatch();
+    if (this.edit_matches.includes(this.matchId) === true) {
+      return false;
+    } else {
+      this.edit_matches.push(id);
+      console.log(this.edit_matches);
+      this.getSingleMatchData();
+      this.getSingleMatch();
+    }
   }
 
   getSingleMatch() {
@@ -57,7 +65,7 @@ export class MatchesComponent implements OnInit {
 
   onSubmit(value: any) {
     let updatedMatch = {
-      'id': value.id,
+      '_id': value.id,
       'homeTeam': value.homeTeam,
       'homeGoals': value.homeGoals,
       'awayTeam': value.awayTeam,
