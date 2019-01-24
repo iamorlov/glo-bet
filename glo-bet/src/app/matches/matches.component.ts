@@ -22,8 +22,10 @@ export class MatchesComponent implements OnInit {
   edit_matches = [];
 
   constructor( private http: Http ) {
-    this.getMatchesData();
-    this.getMatches();
+    setInterval(() => {
+      this.getMatchesData();
+      this.getMatches();
+    }, 1000);
   }
 
   getMatches() {
@@ -75,12 +77,13 @@ export class MatchesComponent implements OnInit {
       'date': value.date
     };
 
-    console.log(updatedMatch);
-
     let putSingleMatchDataURL = this.generalMatchURL + value.id;
+    setTimeout(() => {
+      document.getElementById(value.id).remove();
+    }, 500);
     return this.http
       .put(putSingleMatchDataURL, updatedMatch)
-      .subscribe((res: Response) => res.json());
+      .subscribe((res: Response) => res);
   }
 
   postSubmit(value: any) {
@@ -98,13 +101,13 @@ export class MatchesComponent implements OnInit {
       'awayGoals': null,
       'matchStatus': 'NotStarted',
       'winner': null,
-      'date': value.date
+      'date': value.date + 'T' + value.time + ':00.000Z'
     };
 
     console.log(addMatch);
     return this.http
       .post(this.generalMatchURL, addMatch)
-      .subscribe((res: Response) => res.json());
+      .subscribe((res: Response) => res);
   }
 
   ngOnInit() {

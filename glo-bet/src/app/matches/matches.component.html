@@ -1,8 +1,8 @@
-<div class="admin-wrapper">
+<div class="admin-wrapper fadeInUp">
 
   <h2>Upcoming matches:</h2>
 
-  <div *ngFor='let match of data' class="single-match" (click)="singleMatchOpen(match.id)">
+  <div *ngFor='let match of data' class="single-match fadeInUp" (click)="singleMatchOpen(match.id)">
     <div class='single-match-id'><strong>ID: </strong>{{match.id}} <i class="far fa-edit" style="float: right;"></i></div>
     <div class='single-match-col'>{{match.homeTeam}} - {{match.awayTeam}}</div>
     <div class='single-match-date'><i class="far fa-clock"></i> {{match.date | date:'dd/MM/yy - HH:mm'}}</div>
@@ -11,10 +11,10 @@
   <div class="cf"></div>
 </div>
 
-<div class="admin-wrapper" [hidden]="!matchId">
+<div class="admin-wrapper fadeInUp" [hidden]="!matchId">
   <h2 class='green'>Edit matches:</h2>
 
-  <div class='edit-match' *ngFor='let match of single_data_array'>
+  <div class='edit-match fadeInUp' *ngFor='let match of single_data_array' id='{{match.id}}'>
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
       <div class='edit-match-header'>{{match.homeTeam}} - {{match.awayTeam}}</div>
       <input type='text' class="input-data hidden" name='id' [(ngModel)]='match.id'>
@@ -53,14 +53,23 @@
   </div>
 </div>
 
-<div class="admin-wrapper" style="display:none;">
+<div class="admin-wrapper fadeInUp">
   <form #post="ngForm" (ngSubmit)="postSubmit(post.value)">
+    <label class='input-data-label'>Home team name:</label>
     <input type='text' placeholder="Home Team" class="input-data" name='homeTeam' ngModel required>
+    <label class='input-data-label'>Awat team name:</label>
     <input type='text' placeholder="Away Team" class="input-data" name='awayTeam' ngModel required>
+    <label class='input-data-label'>Home team goals:</label>
     <input type='text' value='null' placeholder="Home Team Goals" class="input-data" name='homeGoals' ngModel disabled>
+    <label class='input-data-label'>Away team goals:</label>
     <input type='text' value='null' placeholder="Away Team Goals" class="input-data" name='awayGoals' ngModel disabled>
+    <label class='input-data-label'>Match status (not Started):</label>
     <input type='text' value='NotStarted' placeholder="Match status" class="input-data" name='matchStatus' ngModel disabled>
-    <input type='text' value='2019-02-14T10:10:40.787Z' placeholder="Match date" class="input-data" name='date' ngModel required>
+    <label class='input-data-label'>Match date:</label>
+    <input type='date' placeholder="Match date" class="input-data" name='date' ngModel required>
+    <label class='input-data-label'>Match time: (XX:XX format only!)</label>
+    <input type='text' placeholder="Match time" class="input-data" name='time' ngModel required pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}">
+    <label class='input-data-label'>Winner:</label>
     <input type='text' value='null' placeholder="Winner" class="input-data" name='winner' ngModel disabled>
 
     <button class="save-button" type='submit' [disabled]="!post.valid">Add match</button>
