@@ -22,7 +22,7 @@
         Global Betting admin!
       </div>
       <div class="nav-right">
-        <span class="nav-button">
+        <span class="nav-button" (click)='addMatch()'>
           <i class="fas fa-plus"></i> Add new match
         </span>
         <span class="nav-button-logout" (click)='logOut()'>
@@ -31,6 +31,22 @@
       </div>
     </div>
   </nav>
+
+  <div class="admin-wrapper fadeInUp" *ngIf='addNewMatch'>
+    <h2 class='purple'>Add new match: <span title='Close' class='close-new-match' (click)="closeAddMatch()"><i class="far fa-times-circle"></i></span></h2>
+    <form #post="ngForm" (ngSubmit)="postSubmit(post.value)">
+      <label class='input-data-label'>Home team name:</label>
+      <input type='text' placeholder="Home Team" class="input-data" name='homeTeam' ngModel required>
+      <label class='input-data-label'>Awat team name:</label>
+      <input type='text' placeholder="Away Team" class="input-data" name='awayTeam' ngModel required>
+      <label class='input-data-label'>Match date:</label>
+      <input type='date' placeholder="Match date" class="input-data" name='date' ngModel required>
+      <label class='input-data-label'>Match time: (XX:XX format only!)</label>
+      <input type='text' placeholder="Match time" class="input-data" name='time' ngModel required pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}">
+
+      <button class="add-match-button" type='submit' [disabled]="!post.valid">Add match</button>
+    </form>
+  </div>
 
   <app-matches></app-matches>
 </div>

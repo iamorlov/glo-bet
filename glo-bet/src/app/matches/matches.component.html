@@ -52,26 +52,3 @@
     </form>
   </div>
 </div>
-
-<div class="admin-wrapper fadeInUp">
-  <form #post="ngForm" (ngSubmit)="postSubmit(post.value)">
-    <label class='input-data-label'>Home team name:</label>
-    <input type='text' placeholder="Home Team" class="input-data" name='homeTeam' ngModel required>
-    <label class='input-data-label'>Awat team name:</label>
-    <input type='text' placeholder="Away Team" class="input-data" name='awayTeam' ngModel required>
-    <label class='input-data-label'>Home team goals:</label>
-    <input type='text' value='null' placeholder="Home Team Goals" class="input-data" name='homeGoals' ngModel disabled>
-    <label class='input-data-label'>Away team goals:</label>
-    <input type='text' value='null' placeholder="Away Team Goals" class="input-data" name='awayGoals' ngModel disabled>
-    <label class='input-data-label'>Match status (not Started):</label>
-    <input type='text' value='NotStarted' placeholder="Match status" class="input-data" name='matchStatus' ngModel disabled>
-    <label class='input-data-label'>Match date:</label>
-    <input type='date' placeholder="Match date" class="input-data" name='date' ngModel required>
-    <label class='input-data-label'>Match time: (XX:XX format only!)</label>
-    <input type='text' placeholder="Match time" class="input-data" name='time' ngModel required pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}">
-    <label class='input-data-label'>Winner:</label>
-    <input type='text' value='null' placeholder="Winner" class="input-data" name='winner' ngModel disabled>
-
-    <button class="save-button" type='submit' [disabled]="!post.valid">Add match</button>
-  </form>
-</div>

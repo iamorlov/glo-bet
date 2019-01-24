@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map'
 export class MatchesComponent implements OnInit {
 
   private getMatchesURL = 'https://global-bet.azurewebsites.net/api/matches?offset=0&limit=100';
-  data: any = {};
+  data: any = [];
 
   private generalMatchURL = 'https://global-bet.azurewebsites.net/api/matches/';
   matchId: any;
@@ -45,7 +45,6 @@ export class MatchesComponent implements OnInit {
       return false;
     } else {
       this.edit_matches.push(id);
-      console.log(this.edit_matches);
       this.getSingleMatchData();
       this.getSingleMatch();
     }
@@ -59,7 +58,6 @@ export class MatchesComponent implements OnInit {
 
   getSingleMatchData() {
     this.getSingleMatch().subscribe(data => {
-      console.log(data);
       this.single_data = data;
       this.single_data_array.push(data);
     })
@@ -83,30 +81,6 @@ export class MatchesComponent implements OnInit {
     }, 500);
     return this.http
       .put(putSingleMatchDataURL, updatedMatch)
-      .subscribe((res: Response) => res);
-  }
-
-  postSubmit(value: any) {
-
-    let addMatch = {
-      '_id': (function () {
-                  var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
-                  return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
-                      return (Math.random() * 16 | 0).toString(16);
-                  }).toLowerCase();
-              })(),
-      'homeTeam': value.homeTeam,
-      'homeGoals': null,
-      'awayTeam': value.awayTeam,
-      'awayGoals': null,
-      'matchStatus': 'NotStarted',
-      'winner': null,
-      'date': value.date + 'T' + value.time + ':00.000Z'
-    };
-
-    console.log(addMatch);
-    return this.http
-      .post(this.generalMatchURL, addMatch)
       .subscribe((res: Response) => res);
   }
 
