@@ -72,8 +72,12 @@ export class AppComponent implements OnInit {
       'awayGoals': null,
       'matchStatus': 'NotStarted',
       'winner': null,
-      'date': value.date + 'T' + value.time + ':00.000Z'
+      'date': value.date + 'T' + value.time + ':00+02:00'
     };
+
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
 
     return this.http
       .post(this.generalMatchURL, addMatch)

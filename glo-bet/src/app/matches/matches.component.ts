@@ -22,10 +22,8 @@ export class MatchesComponent implements OnInit {
   edit_matches = [];
 
   constructor( private http: Http ) {
-    setInterval(() => {
       this.getMatchesData();
       this.getMatches();
-    }, 1000);
   }
 
   getMatches() {
