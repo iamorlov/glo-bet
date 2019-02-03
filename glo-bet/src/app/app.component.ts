@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response } from  '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -14,8 +12,13 @@ export class AppComponent implements OnInit {
   logged = false;
   error = false;
   addNewMatch = false;
+  predictionsOne = false;
 
   private generalMatchURL = 'https://global-bet.azurewebsites.net/api/matches/';
+
+  private predictionsNotStarted = 'https://global-bet.azurewebsites.net/api/predictions?matchStatus=notStarted';
+
+  user_predictions:any = {};
 
   /* MEGA SHIT CODE! NEVER CODE LIKE THIS!!! */
   username:string = 'Odmen';
@@ -23,6 +26,7 @@ export class AppComponent implements OnInit {
 
   constructor( private http: Http ) {
     this.checkLogged();
+    this.getPredictions();
   }
 
   login() {
@@ -49,12 +53,29 @@ export class AppComponent implements OnInit {
     document.location.reload(true);
   }
 
+  getPredictions() {
+    return this.http.get(this.predictionsNotStarted)
+      .map((res: Response) => res.json())
+      .subscribe(data => {
+        this.user_predictions = data;
+        console.log(this.user_predictions);
+      })
+  }
+
   addMatch() {
     this.addNewMatch = !this.addNewMatch;
   }
 
   closeAddMatch() {
     this.addNewMatch = !this.addNewMatch;
+  }
+
+  showPredictions() {
+    this.predictionsOne = !this.predictionsOne;
+  }
+
+  closePredictions() {
+    this.predictionsOne = !this.predictionsOne;
   }
 
   postSubmit(value: any) {

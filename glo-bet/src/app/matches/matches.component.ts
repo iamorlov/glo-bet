@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response } from  '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
-import 'rxjs/add/operator/map'
+import { ScrollToService } from 'ng2-scroll-to-el';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-matches',
@@ -21,9 +20,13 @@ export class MatchesComponent implements OnInit {
 
   edit_matches = [];
 
-  constructor( private http: Http ) {
+  constructor( private http: Http, private scrollService: ScrollToService) {
       this.getMatchesData();
       this.getMatches();
+  }
+
+  scrollToMe(element) {
+    this.scrollService.scrollTo(element);
   }
 
   getMatches() {
@@ -47,6 +50,10 @@ export class MatchesComponent implements OnInit {
       this.getSingleMatch();
     }
   }
+
+  scrollEdit(el: HTMLElement) {
+    el.scrollIntoView();
+  };
 
   getSingleMatch() {
     let getSingleMatchDataURL = this.generalMatchURL + this.matchId;

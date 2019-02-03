@@ -25,6 +25,9 @@
         <span class="nav-button" (click)='addMatch()'>
           <i class="fas fa-plus"></i> Add new match
         </span>
+        <span class="nav-button" (click)='showPredictions()'>
+          <i class="fas fa-trophy"></i> Leaderboard
+        </span>
         <span class="nav-button-logout" (click)='logOut()'>
           Log out &nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>
         </span>
@@ -46,6 +49,17 @@
 
       <button class="add-match-button" type='submit' [disabled]="!post.valid">Add match</button>
     </form>
+  </div>
+
+  <div class="admin-wrapper fadeInUp" *ngIf='predictionsOne'>
+    <h2 class='gold'>Leaderboard: <span title='Close' class='close-new-match' (click)="closePredictions()"><i class="far fa-times-circle"></i></span></h2>
+    
+    <div *ngFor='let prediction of user_predictions; let i = index' id='{{prediction.matchId}}'>
+        <strong>{{i}}</strong>
+        <div>{{prediction.matchName}}</div>
+        <div>{{prediction.userPredictions.username}}</div>
+        <div>{{prediction.userPredictions.predictedScore}}</div>
+    </div>
   </div>
 
   <app-matches></app-matches>

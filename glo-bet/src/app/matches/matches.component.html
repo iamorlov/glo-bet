@@ -2,7 +2,7 @@
 
   <h2>Upcoming matches:</h2>
 
-  <div *ngFor='let match of data' class="single-match fadeInUp" (click)="singleMatchOpen(match.id)">
+  <div *ngFor='let match of data' class="single-match fadeInUp" (click)="singleMatchOpen(match.id); scrollToMe(target)">
     <div class='single-match-id'><strong>ID: </strong>{{match.id}} <i class="far fa-edit" style="float: right;"></i></div>
     <div class='single-match-col'>{{match.homeTeam}} - {{match.awayTeam}}</div>
     <div class='single-match-date'><i class="far fa-clock"></i> {{match.date | date:'dd/MM/yy - HH:mm'}}</div>
@@ -52,3 +52,5 @@
     </form>
   </div>
 </div>
+
+<div #target></div>

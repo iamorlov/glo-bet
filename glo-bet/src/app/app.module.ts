@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from  '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
+
+import { ScrollToModule } from 'ng2-scroll-to-el';
 
 import { AppComponent } from './app.component';
 import { MatchesComponent } from './matches/matches.component';
@@ -17,7 +17,8 @@ import { MatchesComponent } from './matches/matches.component';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    ScrollToModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
