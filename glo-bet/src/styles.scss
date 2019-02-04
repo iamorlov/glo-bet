@@ -281,7 +281,8 @@ body {
   }
 
   html {
-    padding-top: 240px;
+    padding-top: 150px;
+    padding-bottom: 10px;
   }
 
   .admin-wrapper {
@@ -289,6 +290,9 @@ body {
   }
 }
 @media screen and (max-width: 720px) {
+  .nav {
+    padding:  5px 0;
+  }
   .nav-left,
   .nav-right {
     width: 100%;
@@ -297,7 +301,12 @@ body {
   }
   .nav-button, .nav-button-logout {
     display: inline-block;
-    width: 90%;
     margin: 5px auto;
+  }
+  .nav-button {
+    width: 48%;
+  }
+  .nav-button-logout {
+    width: 90%;
   }
 }
