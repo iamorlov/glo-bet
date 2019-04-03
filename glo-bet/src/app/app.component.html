@@ -26,7 +26,7 @@
           <i class="fas fa-plus"></i> New match
         </span>
         <span class="nav-button" (click)='showPredictions()'>
-          <i class="fas fa-trophy"></i> Leaderboard
+          <i class="fas fa-trophy"></i> Predictions
         </span>
         <span class="nav-button-logout" (click)='logOut()'>
           Log out &nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>
@@ -52,13 +52,17 @@
   </div>
 
   <div class="admin-wrapper fadeInUp" *ngIf='predictionsOne'>
-    <h2 class='gold'>Leaderboard: <span title='Close' class='close-new-match' (click)="closePredictions()"><i class="far fa-times-circle"></i></span></h2>
-    
-    <div *ngFor='let prediction of user_predictions; let i = index' id='{{prediction.matchId}}'>
-        <strong>{{i}}</strong>
-        <div>{{prediction.matchName}}</div>
-        <div>{{prediction.userPredictions.username}}</div>
-        <div>{{prediction.userPredictions.predictedScore}}</div>
+    <h2 class='gold'>Predictions: <span title='Close' class='close-new-match' (click)="closePredictions()"><i class="far fa-times-circle"></i></span></h2>
+
+    <div *ngFor='let prediction of user_predictions; let i = index' class="user-prediction" id='{{prediction.matchId}}'>
+        <div class="prediction-match">{{prediction.matchName}}</div>
+        <div class="prediction-bets">
+          <div *ngFor='let users of prediction["userPredictions"]'>
+            <span>{{users?.username}}:</span>
+            <strong>{{users?.predictedScore}}</strong>
+          </div>
+        </div>
+        <div class="cf"></div>
     </div>
   </div>
 

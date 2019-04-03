@@ -57,3 +57,62 @@
   font-size: 1.1em;
   text-align: center;
 }
+
+.cf {
+  width: 100%;
+  clear: both;
+}
+
+.user-prediction {
+  width: 100%;
+  border-radius: 5px;
+  background: #F5F5F5;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.prediction-match {
+  padding: 10px;
+  width: 25%;
+  float: left;
+  background: #ffc107;
+  color: #fff;
+  font-weight: 700;
+  overflow:hidden; 
+  white-space:nowrap; 
+  text-overflow: ellipsis;
+}
+
+.prediction-bets {
+  padding-left: 10px;
+  width: 75%;
+  float: left;
+  &>div {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px 0 0 5px;
+    border-radius: 3px;
+    border: 1px solid #ffc107;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .user-prediction {
+    width: 96%;
+    margin: auto;
+    margin-bottom: 1%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .prediction-match, .prediction-bets {
+    width: 100%;
+  }
+
+  .prediction-bets {
+    padding: 0;
+    &>div {
+      margin: 10px;
+    }
+  }
+}
